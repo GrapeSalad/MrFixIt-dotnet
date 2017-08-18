@@ -18,13 +18,17 @@
                     @Job.Title
                     <ul>
                         <li>@Job.Description</li>
-                        @if (Job.Completed && !Job.Pending)
+                        @if (Job.Completed)
                         {
                             <li>Completed!</li>
                         }
-                        else if(!Job.Completed && !Job.Pending)
+                        else if(Job.Active)
                         {
                             <li id="active">In Progress!</li>
+                        }
+                        else if(!Job.Pending && !Job.Active)
+                        {
+                            <li>This project has been picked up, but not started!</li>
                         }
                         else
                         {

@@ -10,7 +10,7 @@ $(document).ready(function () {
             }
         });
     });
-    $(".makeActive").click(function () {
+    $(".showSetActiveForm").click(function () {
         $.ajax({
             type: 'GET',
             dataType: 'html',
@@ -31,7 +31,7 @@ $(document).ready(function () {
             data: $(this).serialize(),
             dataType: 'json',
             success: function (result) {
-                var resultMessage = "This job "+ result.Name + "is now active";
+                var resultMessage = "This job "+ result.Name + " is now active";
                 $('#activateResult').html(resultMessage);
             },
             error: function (result) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
             }
         });
     });
-    $(".setCompleted").click(function () {
+    $(".showCompletionForm").click(function () {
         $.ajax({
             type: 'GET',
             dataType: 'html',
@@ -48,6 +48,18 @@ $(document).ready(function () {
             success: function (result) {
                 var form = $(result).find('form').html();
                 $('#completionFormShow').html(form);
+            }
+        });
+    });
+    $(".setCompletedForm").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/Jobs/Complete',
+            data: $(this).serialize(),
+            success: function (result) {
+                var resultMessage = "This job " + result.Name + " is now complete";
+                $('#completionResult').html(resultMessage);
             }
         });
     });
