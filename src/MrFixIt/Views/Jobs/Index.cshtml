@@ -1,31 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Jobs - Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*Fixed nested ul, add layout, add error checking for the view's model(if nothing is in the model, user can see a link to create new job) - DWilson 8/18*@
 <div class="text-center">
     <h3>Our Current Jobs</h3>
     @Html.ActionLink("Add a new job", "Create")
 </div>
-@foreach (var Job in Model)
+@if (Model.Any())
 {
-    <ul>
-        <li>@Job.Title</li>
+    @foreach (var Job in Model)
+    {
         <ul>
-            <li>@Job.Description</li>
+            <li>
+                @Job.Title
+                <ul>
+                    <li>@Job.Description</li>
+                </ul>
+            </li>
+            @if (Job.Worker == null)
+            {
+            <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+            }
+            else
+            {
+                <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
+
+            }
         </ul>
-        @if (Job.Worker == null)
-        {
-        <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
-        }
-        else
-        {
-            <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
-
-        }
-    </ul>
 
 
-    <hr />
+        <hr />
+    }
 }
+else
+{
+    <p>There are no jobs! @Html.ActionLink("Create", "Create") one for our specialists to work on!</p>
+}
+
 

@@ -1,10 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-    ViewBag.Title = "Register";
+﻿@{
+    ViewData["Title"] = "Account - Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*AddLayout, needs links - Dwilson 8/18*@
 @using System.Security.Claims
 
 <h2>Mr. Fix-It</h2>
@@ -12,8 +10,9 @@
 @if (User.Identity.IsAuthenticated)
 {
     <h4>Hello @User.Identity.Name!</h4>
-
-} else
+    //Needs links!
+}
+else
 {
     <p>@Html.ActionLink("Register", "Register")</p>
     <p>@Html.ActionLink("Log in", "Login")</p>

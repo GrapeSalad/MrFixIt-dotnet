@@ -16,7 +16,7 @@ namespace MrFixIt.Models
         public bool Pending { get; set; }
         public virtual Worker Worker { get; set; }
 
-        public Worker FindWorker(string UserName)
+        public Worker FindWorker(string UserName)//0 references, is this necessary? - DWilson 8/18
         {
             Worker thisWorker = new MrFixItContext().Workers.FirstOrDefault(i => i.UserName == UserName);
             return thisWorker;

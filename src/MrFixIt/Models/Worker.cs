@@ -20,7 +20,7 @@ namespace MrFixIt.Models
         //this comes from Identity.User
         public virtual ICollection<Job> Jobs { get; set; }
 
-        public Worker()
+        public Worker()//0 references, is this necessary? - DWilson 8/18
         {
             Avaliable = true;
         }

@@ -1,13 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Workers - Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@*Add Layout, error checking in case a user finds this page blank - Dwilson 8/18*@
 @if (User.Identity.IsAuthenticated)
 {
-
     <div class="text-center">
         <h4>Hello Worker @Model.FirstName @Model.LastName. You are Logged In</h4>
         <h3>Your Current Jobs:</h3>
@@ -25,4 +23,8 @@
             <p>You are already assigned to a job.</p>
         }
     </div>
+}
+else
+{
+    <p>You must @Html.ActionLink("log in", "Login", "Account") to view this page!</p>
 }

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "eda4b87fe87b3dedf66bfd43ebadb4eb0d7a1af2"
+    "signature": "d8ce3e1d905dfba902c673b5670802ea5bacfd96"
   },
   "compilationOptions": {
     "defines": [
@@ -30,7 +30,8 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
           "RestSharp.NetCore": "105.2.3",
           "Newtonsoft.Json": "9.0.1",
-          "Microsoft.AspNetCore.Http.Abstractions": "1.1.0"
+          "Microsoft.AspNetCore.Http.Abstractions": "1.1.0",
+          "popper.js": "1.12.2"
         },
         "runtime": {
           "MrFixIt.dll": {}
@@ -1598,6 +1599,7 @@
           "lib/netstandard1.0/NuGet.Versioning.dll": {}
         }
       },
+      "popper.js/1.12.2": {},
       "Remotion.Linq/2.1.1": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -4305,6 +4307,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-Stok+SI5lWxOkTgZZM7jT4xuAZogm5+j85mKJeHSXb8o0OAbB+qDX9jkdM2wIEnjoR8R29J0nQYwk2Kl2lWFpA=="
+    },
+    "popper.js/1.12.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-I0q0gBwI0PUGetzn1qQr/R/QosFlxHzcy8DGV5lG9QhfKrb5ROppOE6E0+Bg/zSS+cz8WwtbTcmWavhPIJqlmQ=="
     },
     "Remotion.Linq/2.1.1": {
       "type": "package",
