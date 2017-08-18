@@ -6,16 +6,17 @@
 @*Add Layout - Dwilson 8/18*@
 
 @model MrFixIt.Models.Job
+<div id="jobSelectConfirm">
+    <h2>Would you like to do this job?</h2>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.JobId)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.Description)
 
-<h2>Would you like to do this job?</h2>
-<hr />
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.JobId)
-    @Html.HiddenFor(model => model.Title)
-    @Html.HiddenFor(model => model.Description)
-
-    <h4>@Model.Title</h4>
-    <input type="submit" value="Claim This Job" />
-}
-<p>@Html.ActionLink("Back to list", "Index")</p>
+        <h4>@Model.Title</h4>
+        <input type="submit" value="Claim This Job" />
+    }
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+</div>

@@ -34,7 +34,14 @@ namespace MrFixIt
             services.AddEntityFramework()
                 .AddDbContext<MrFixItContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 1;
+            })
                 .AddEntityFrameworkStores<MrFixItContext>()
                 .AddDefaultTokenProviders();
         }

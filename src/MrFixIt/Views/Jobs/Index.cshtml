@@ -7,35 +7,36 @@
     <h3>Our Current Jobs</h3>
     @Html.ActionLink("Add a new job", "Create")
 </div>
-@if (Model.Any())
-{
-    @foreach (var Job in Model)
+<div id="jobClaimDiv">
+    @if (Model.Count != 0)
     {
-        <ul>
-            <li>
-                @Job.Title
-                <ul>
-                    <li>@Job.Description</li>
-                </ul>
-            </li>
-            @if (Job.Worker == null)
-            {
-            <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
-            }
-            else
-            {
-                <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
+        @foreach (var Job in Model)
+        {
+            <ul>
+                <li>
+                    @Job.Title
+                    <ul>
+                        <li>@Job.Description</li>
+                    </ul>
+                </li>
+                @if (Job.Worker == null)
+                {
+                    <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>
+                }
+                else
+                {
+                    <li class="btn">This Job is claimed by @Job.Worker.FirstName @Job.Worker.LastName</li>
 
-            }
-        </ul>
+                }
+            </ul>
 
 
-        <hr />
+            <hr />
+        }
     }
-}
-else
-{
-    <p>There are no jobs! @Html.ActionLink("Create", "Create") one for our specialists to work on!</p>
-}
-
+    else
+    {
+        <p>There are no jobs! @Html.ActionLink("Create", "Create") one for our specialists to work on!</p>
+    }
+</div>
 

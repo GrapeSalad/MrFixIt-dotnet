@@ -14,6 +14,9 @@
             <h5>@Job.Title</h5>
 
         }
+        <div class="jobSelect"><p>Select a job</p>
+        </div>
+        <div id="result"></div>
         @if (Model.Avaliable)
         {
             <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
