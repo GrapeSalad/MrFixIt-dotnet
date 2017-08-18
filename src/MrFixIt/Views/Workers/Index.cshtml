@@ -13,9 +13,15 @@
         {
             <h5>@Job.Title</h5>
             <div class="completion">
-                @if(!Job.Completed)
+                @if(!Job.Active)//if the job isn't active
                 {
-                    <p id="active">In progress! | <span class="makeActive">Click me to select this one as active!</span></p>
+                    <h4 class="makeActive">Click to Set Active</h4>
+                    <div id="activeFormShow"></div>
+                }
+                @if(!Job.Completed && Job.Active)//if the job is active but not completed
+                {
+                    <h4 class="setCompleted">Click to complete the job</h4>
+                    <div id="completionFormShow"></div>
                 }
             </div>
 

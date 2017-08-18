@@ -13,22 +13,44 @@ $(document).ready(function () {
     $(".makeActive").click(function () {
         $.ajax({
             type: 'GET',
-            url: '/Jobs/Index',
+            dataType: 'html',
+            url: '/Jobs/ActiveForm',
             success: function (result) {
-                var d = document.getElementById("active");
-                d.className += "current";
+                var form = $(result).find('.setActive').html();
+                $('#activeFormShow').html(form);
             }
         });
     });
-    //$(".jobSelectConfirm").click(function () {
-    //    $.ajax({
-    //        type: 'GET',
-    //        url: '/Jobs/Claim',
-    //        success: function (result) {
-    //            var div = $(result).find('#jobSelectConfirm').html(div);
-    //        }
-    //    });
-    //});
+    $(".setActive").submit(function (event) {//why doesnt this work
+        event.preventDefault();
+        console.log(test);
+        console.log("data " + $(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: '/Jobs/Activate',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function (result) {
+                var resultMessage = "This job "+ result.Name + "is now active";
+                $('#activateResult').html(resultMessage);
+            },
+            error: function (result) {
+                var resultMessage = "Its broke, but it shows";
+                $('#activateResult').html(resultMessage);
+            }
+        });
+    });
+    $(".setCompleted").click(function () {
+        $.ajax({
+            type: 'GET',
+            dataType: 'html',
+            url: '/Jobs/CompleteForm',
+            success: function (result) {
+                var form = $(result).find('form').html();
+                $('#completionFormShow').html(form);
+            }
+        });
+    });
     //$(".JobSelect").submit(function (event) {
     //    event.preventDefault();
     //    $.ajax({
