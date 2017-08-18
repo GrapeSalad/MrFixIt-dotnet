@@ -5,6 +5,7 @@
 @*Fixed nested ul, add layout, add error checking for the view's model(if nothing is in the model, user can see a link to create new job) - DWilson 8/18*@
 <div class="text-center">
     <h3>Our Current Jobs</h3>
+    <p>If job background is green, the job is currently being worked on.</p>
     @Html.ActionLink("Add a new job", "Create")
 </div>
 <div id="jobClaimDiv">
@@ -17,6 +18,19 @@
                     @Job.Title
                     <ul>
                         <li>@Job.Description</li>
+                        @if (Job.Completed && !Job.Pending)
+                        {
+                            <li>Completed!</li>
+                        }
+                        else if(!Job.Completed && !Job.Pending)
+                        {
+                            <li id="active">In Progress!</li>
+                        }
+                        else
+                        {
+                            <li>Your Job hasn't been picked up yet</li>
+
+                        }
                     </ul>
                 </li>
                 @if (Job.Worker == null)

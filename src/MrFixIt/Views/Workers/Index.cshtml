@@ -12,9 +12,15 @@
         @foreach (var Job in Model.Jobs)
         {
             <h5>@Job.Title</h5>
+            <div class="completion">
+                @if(!Job.Completed)
+                {
+                    <p id="active">In progress! | <span class="makeActive">Click me to select this one as active!</span></p>
+                }
+            </div>
 
         }
-        <div class="jobSelect"><p>Select a job</p>
+        <div class="listJobs"><p>Click to View All Jobs</p>
         </div>
         <div id="result"></div>
         @if (Model.Avaliable)
