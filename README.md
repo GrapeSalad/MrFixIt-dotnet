@@ -1,4 +1,4 @@
-### Mr Fix-It
+# Mr Fix-It
 #### A repair technician job service.
 
 An Epicodus Solo project for Mr. Fix-It, a web-based maintenance job board posting forum.
