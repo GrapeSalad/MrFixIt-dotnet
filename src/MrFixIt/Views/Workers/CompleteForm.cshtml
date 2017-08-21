@@ -8,10 +8,10 @@
 </form>
 <div id="completeResult"></div>*@
 <div class='@Model.JobId-completion-submit'>
-    @using (Html.BeginForm("Activate", null, FormMethod.Post, htmlAttributes: new { @class = (@Model.JobId + "-completion-submit") }))
+    @using (Html.BeginForm("Complete", null, FormMethod.Post, htmlAttributes: new { @class = (@Model.JobId + "-completion-submit") }))
     {
         @Html.HiddenFor(m => m.JobId)
-        <input type="submit" value="Activate" />
+        <input type="submit" value="Complete" />
     }
     <div id="completeResult"></div>
 </div>

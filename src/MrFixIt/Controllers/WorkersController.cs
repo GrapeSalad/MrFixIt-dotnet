@@ -51,12 +51,12 @@ namespace MrFixIt.Controllers
         [HttpPost]
         public IActionResult Activate(Job job)
         {
-            //Job currentJob = db.Jobs.FirstOrDefault(j => j.JobId == job.JobId);
+            Job thisJob = db.Jobs.FirstOrDefault(j => j.JobId == job.JobId);
             var thisWorker = db.Workers.Include(i => i.Jobs).FirstOrDefault(i => i.UserName == User.Identity.Name);
-            job.Active = true;
-            db.Entry(job).State = EntityState.Modified;
+            thisJob.Active = true;
+            db.Entry(thisJob).State = EntityState.Modified;
             db.SaveChanges();
-            return View(thisWorker);
+            return RedirectToAction("Index");
         }
 
         public IActionResult CompleteForm(int id)
@@ -65,14 +65,15 @@ namespace MrFixIt.Controllers
             return View(thisItem);
         }
         [HttpPost]
-        public IActionResult SetComplete(Job job)
+        public IActionResult Complete(Job job)
         {
-            job.Completed = true;
-            job.Active = false;
+            Job thisJob = db.Jobs.FirstOrDefault(j => j.JobId == job.JobId);
+            thisJob.Completed = true;
+            thisJob.Active = false;
             var thisWorker = db.Workers.Include(i => i.Jobs).FirstOrDefault(i => i.UserName == User.Identity.Name);
-            db.Entry(job).State = EntityState.Modified;
+            db.Entry(thisJob).State = EntityState.Modified;
             db.SaveChanges();
-            return View(thisWorker);
+            return RedirectToAction("Index");
         }
     }
 }

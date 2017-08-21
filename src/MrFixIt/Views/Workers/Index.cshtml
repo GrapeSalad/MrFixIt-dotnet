@@ -13,19 +13,24 @@
         {
             <h5>@Job.Title</h5>
             <div class="completion">
-                @if (!Job.Active)//if the job isn't active
+                @if (!Job.Active && !Job.Pending && !Job.Completed)//if the job isn't active
                 {
                     <h4 class=@Job.JobId@Job.Active>Click to Set Active</h4>
                     <div id="activeShowResult"></div>
                 }
-                @if (!Job.Completed && Job.Active)//if the job is active but not completed
+                else if (!Job.Completed && !Job.Pending && Job.Active)//if the job is active but not completed
                 {
                     <h4 class='@Job.JobId-completion'>Click to complete the job</h4>
                     <div id="completionShowResult"></div>
                 }
-                @if (Job.Completed)
+                else if (Job.Completed && !Job.Active && !Job.Pending)
                 {
                     <h4>Completed!</h4>
+                }
+                else
+                {
+                    <p>Have a nice day</p>
+
                 }
             </div>
             <script>
@@ -81,7 +86,7 @@
                             type: 'POST',
                             url: '@Url.Action("SetComplete")',
                             data: {id : @Job.JobId},
-                            dataType: 'json',
+                            dataType: 'html',
                             success: function (result) {
                                 var resultMessage = "This job "+ result.Name + " is now complete";
                                 $('#completionShowResult').html(result);
