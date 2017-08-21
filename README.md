@@ -26,12 +26,8 @@ Navigate to the directory in which you downloaded the repo and open the project 
 
 ### Migration
 
-Navigate to `....\project-name\src\projectname`.
+Navigate to `..\project-name\src\projectname`.
 Run this command in your terminal: `dotnet ef database update`.
-
-### Data Entry
-
-Open [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms), Log in to the default database, Find the open file button in the tool ribbon, navigate to and double click on the file named Data_For_Migration in the SQL_Queries folder.
 
 ### Running the Server
 

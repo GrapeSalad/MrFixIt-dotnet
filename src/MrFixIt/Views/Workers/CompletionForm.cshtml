@@ -1,0 +1,17 @@
+﻿@model MrFixIt.Models.Job
+
+@*<form class="setCompletedForm" action="SetComplete">
+    @Html.HiddenFor(m => m.JobId)
+    @Html.HiddenFor(m => m.Title)
+    @Html.HiddenFor(m => m.Description)
+    <button type="submit">Complete</button>
+</form>
+<div id="completeResult"></div>*@
+<div class='@Model.JobId-completion-submit'>
+    @using (Html.BeginForm("Activate", null, FormMethod.Post, htmlAttributes: new { @class = (@Model.JobId + "-completion-submit") }))
+    {
+        @Html.HiddenFor(m => m.JobId)
+        <input type="submit" value="Activate" />
+    }
+    <div id="completeResult"></div>
+</div>

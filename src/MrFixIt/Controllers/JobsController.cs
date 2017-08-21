@@ -50,35 +50,35 @@ namespace MrFixIt.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ActiveForm(int id)
-        {
-            var thisItem = db.Jobs.FirstOrDefault(i => i.JobId == id);
-            return View(thisItem);
-        }
+  //      public IActionResult ActiveForm(int id)
+  //      {
+  //          var thisItem = db.Jobs.FirstOrDefault(i => i.JobId == id);
+  //          return View(thisItem);
+  //      }
 
-        [HttpPost]
-        public IActionResult Activate(Job job)
-        {
-            //Job currentJob = db.Jobs.FirstOrDefault(j => j.JobId == job.JobId);
-            job.Active = true;
-            db.Entry(job).State = EntityState.Modified;
-            db.SaveChanges();
-            return Json(job);
-        }
+  //      [HttpPost]
+  //      public IActionResult Activate(Job job)
+  //      {
+  //          //Job currentJob = db.Jobs.FirstOrDefault(j => j.JobId == job.JobId);
+  //          job.Active = true;
+  //          db.Entry(job).State = EntityState.Modified;
+  //          db.SaveChanges();
+  //          return Json(job);
+  //      }
 
-        public IActionResult CompleteForm(int id)
-        {
-            var thisItem = db.Jobs.FirstOrDefault(i => i.JobId == id);
-            return View(thisItem);
-        }
-		[HttpPost]
-		public IActionResult SetComplete(Job job)
-		{
-			job.Completed = true;
-			job.Active = true;
-			db.Entry(job).State = EntityState.Modified;
-			db.SaveChanges();
-			return Json(job);
-		}
+  //      public IActionResult CompleteForm(int id)
+  //      {
+  //          var thisItem = db.Jobs.FirstOrDefault(i => i.JobId == id);
+  //          return View(thisItem);
+  //      }
+		//[HttpPost]
+		//public IActionResult SetComplete(Job job)
+		//{
+		//	job.Completed = true;
+		//	job.Active = true;
+		//	db.Entry(job).State = EntityState.Modified;
+		//	db.SaveChanges();
+		//	return Json(job);
+		//}
     }
 }

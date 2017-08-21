@@ -1,0 +1,14 @@
+﻿@model MrFixIt.Models.Job
+
+@*<form class='@Model.JobId-submit' action="Activate">
+    @Html.HiddenFor(m => m.JobId)
+    <button type="submit">Activate</button>
+</form>*@
+<div class='@Model.JobId-submit'>
+    @using (Html.BeginForm("Activate", null, FormMethod.Post, htmlAttributes: new { @class = (@Model.JobId + "-submit") }))
+    {
+        @Html.HiddenFor(m => m.JobId)
+        <input type="submit" value="Activate" />
+    }
+<div id="activateResult"></div>
+</div>

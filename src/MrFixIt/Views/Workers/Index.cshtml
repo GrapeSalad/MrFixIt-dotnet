@@ -13,18 +13,86 @@
         {
             <h5>@Job.Title</h5>
             <div class="completion">
-                @if(!Job.Active)//if the job isn't active
+                @if (!Job.Active)//if the job isn't active
                 {
-                    <h4 class="showSetActiveForm">Click to Set Active</h4>
-                    <div id="activeFormShow"></div>
+                    <h4 class=@Job.JobId@Job.Active>Click to Set Active</h4>
+                    <div id="activeShowResult"></div>
                 }
-                @if(!Job.Completed && Job.Active)//if the job is active but not completed
+                @if (!Job.Completed && Job.Active)//if the job is active but not completed
                 {
-                    <h4 class="setCompleted">Click to complete the job</h4>
-                    <div id="completionFormShow"></div>
+                    <h4 class='@Job.JobId-completion'>Click to complete the job</h4>
+                    <div id="completionShowResult"></div>
+                }
+                @if (Job.Completed)
+                {
+                    <h4>Completed!</h4>
                 }
             </div>
-
+            <script>
+                $('.@Job.JobId@Job.Active').click(function () {
+                    console.log(@Job.JobId);
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'html',
+                        data: {id : @Job.JobId},
+                        url: '@Url.Action("ActiveForm")',
+                        success: function (result) {
+                            var form = $(result).find('.@Job.JobId-submit').html();
+                            $('#activeShowResult').html(form);
+                        }
+                    });
+                });
+                $('.@Job.JobId-submit').submit(function (event) {
+                        event.preventDefault();
+                        console.log(@Job.JobId + "submitting activation");
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("Activate")',
+                            data: {id : @Job.JobId},
+                            dataType: 'html',
+                            success: function (result) {
+                                var resultMessage = "This job "+ result.Name + " is now active";
+                                $('#activateResult').html(resultMessage);
+                            },
+                            error: function (result) {
+                                var resultMessage = "Its broke, but it shows";
+                                $('#activateResult').html(resultMessage);
+                            }
+                        });
+                });
+                $('.@Job.JobId-completion').click(function () {
+                    console.log(@Job.JobId);
+                    $.ajax({
+                        type: 'GET',
+                        dataType: 'html',
+                        data: {id : @Job.JobId},
+                        url: '@Url.Action("CompleteForm")',
+                        success: function (result) {
+                            var form = $(result).find('.@Job.JobId-completion-submit').html();
+                            $('#completionShowResult').html(form);
+                        }
+                    });
+                });
+                    $('.@Job.JobId-completion-submit').submit(function (event) {
+                        event.preventDefault();
+                        console.log(test);
+                        console.log("completion form id: " + @Job.JobId);
+                        $.ajax({
+                            type: 'POST',
+                            url: '@Url.Action("SetComplete")',
+                            data: {id : @Job.JobId},
+                            dataType: 'json',
+                            success: function (result) {
+                                var resultMessage = "This job "+ result.Name + " is now complete";
+                                $('#completionShowResult').html(result);
+                            },
+                            error: function (result) {
+                                var resultMessage = "Its broke, but it shows";
+                                $('#completionShowResult').html(resultMessage);
+                            }
+                        });
+                    });
+            </script>
         }
         <div class="listJobs"><p>Click to View All Jobs</p>
         </div>
