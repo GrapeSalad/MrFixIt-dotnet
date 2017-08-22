@@ -10,11 +10,10 @@ COMPLETED:
 * A job can be assigned to a worker.
 * A worker may take on mulitple jobs from the Worker Dashboard.
 * Make *claiming* a job an **AJAX** action.
+* Workers may mark jobs complete, and select a new active job. **AJAX**
 
 IN PROGRESS
 * A worker may designate one **active** job at a time. **AJAX**
-* Workers may mark jobs complete, and select a new active job. **AJAX**
-
 
 ## Project Build
 
