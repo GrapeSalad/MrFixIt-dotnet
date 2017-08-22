@@ -35,9 +35,8 @@ After installation and Migration, press f5 or the play button in the toolbar to 
 
 ## Known Bugs
 
-Not the prettiest site.
-Cannot set any jobs active.
-Cannot Set any jobs complete, as there are no active jobs.
+Not the prettiest site.<br>
+Need to work on what is shown, though I was mostly concerned with actually making the site work.
 
 ## Technologies Utilized
 
